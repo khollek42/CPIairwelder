@@ -1,10 +1,10 @@
 from setuptools import setup
 
 setup(
-    name='CPIwelding.py',
-    version='1',
+    name='gui.py',
+    version='',
     packages=[''],
-    url='https://xkpxwsqanp.us-east-2.awsapprunner.com/',
+    url='',
     license='',
     author='kyles',
     author_email='',
