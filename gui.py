@@ -1,5 +1,14 @@
+import flask
 import functions
 import PySimpleGUI as sg
+from flask import Flask
+
+app = Flask(__name__)
+
+
+@app.route('/')
+
+
 
 speedlabel = sg.Text("Speed: ")
 speedinput = sg.InputText(tooltip="Enter the speed", enable_events=True, key="speed", size=(40,15))
@@ -7,7 +16,7 @@ speedinput = sg.InputText(tooltip="Enter the speed", enable_events=True, key="sp
 heatlabel = sg.Text("Heat: ")
 heatinput = sg.InputText(tooltip='Enter a temp', enable_events=True, key="heat", size=(40,15))
 
-machineslabel = sg.Text("Machine's: ")
+machineslabel = sg.Text("Machines: ")
 machines = ['Machine 1','Machine 2', 'Machine 3', 'Machine 4']
 machine_menu = sg.DropDown(machines, size=(10,15), enable_events=True, auto_size_text=True, key="machine")
 
@@ -56,6 +65,9 @@ while True:
                     getspeed = functions.get_speed955_1(heat)
                     values["speed"] = getspeed
                     window["speed"].update(value=values["speed"])
+                print(event)
+                print(values)
+
             except ValueError:
                 continue
 
@@ -825,5 +837,6 @@ while True:
 #show events and there values
 #    print(event)
 #    print(values)
+
 
 window.close()
