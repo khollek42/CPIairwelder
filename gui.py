@@ -1,4 +1,4 @@
-import flask
+
 import functions
 import PySimpleGUI as sg
 
