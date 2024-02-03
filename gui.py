@@ -57,8 +57,7 @@ while True:
                     getspeed = functions.get_speed955_1(heat)
                     values["speed"] = getspeed
                     window["speed"].update(value=values["speed"])
-                print(event)
-                print(values)
+
 
             except ValueError:
                 continue
