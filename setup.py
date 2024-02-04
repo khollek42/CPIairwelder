@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(
-    name='gui.py',
+    name='main.py',
     version='',
     packages=[''],
     url='',

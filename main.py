@@ -1,6 +1,13 @@
-
+from flask import Flask
 import functions
 import PySimpleGUI as sg
+
+app = Flask(__name__)
+
+@app.route("/")
+
+def index():
+    return
 
 speedlabel = sg.Text("Speed: ")
 speedinput = sg.InputText(tooltip="Enter the speed", enable_events=True, key="speed", size=(40,15))
@@ -831,3 +838,6 @@ while True:
 
 
 window.close()
+
+if __name__ == "__main__":
+    app.run(host="127.0.0.1", port=8080, debug=True)
