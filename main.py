@@ -1,13 +1,9 @@
-from flask import Flask
+
 import functions
 import PySimpleGUI as sg
 
-app = Flask(__name__)
 
-@app.route("/")
 
-def index():
-    return
 
 speedlabel = sg.Text("Speed: ")
 speedinput = sg.InputText(tooltip="Enter the speed", enable_events=True, key="speed", size=(40,15))
@@ -253,12 +249,12 @@ while True:
         try:
             if event == "speed":
                 speed = float(speed1)
-                getheat = functions.get_heat955_1(speed)
+                getheat = functions.get_heat955_2(speed)
                 values["heat"] = getheat
                 window["heat"].update(value=values["heat"])
             elif event == "heat":
                 heat = float(heat1)
-                getspeed = functions.get_speed955_1(heat)
+                getspeed = functions.get_speed955_2(heat)
                 values["speed"] = getspeed
                 window["speed"].update(value=values["speed"])
         except ValueError:
@@ -272,12 +268,12 @@ while True:
         try:
             if event == "speed":
                 speed = float(speed1)
-                getheat = functions.get_heat955t_1(speed)
+                getheat = functions.get_heat955t_2(speed)
                 values["heat"] = getheat
                 window["heat"].update(value=values["heat"])
             elif event == "heat":
                 heat = float(heat1)
-                getspeed = functions.get_speed955t_1(heat)
+                getspeed = functions.get_speed955t_2(heat)
                 values["speed"] = getspeed
                 window["speed"].update(value=values["speed"])
         except ValueError:
@@ -291,12 +287,12 @@ while True:
         try:
             if event == "speed":
                 speed = float(speed1)
-                getheat = functions.get_heat1055_1(speed)
+                getheat = functions.get_heat1055_2(speed)
                 values["heat"] = getheat
                 window["heat"].update(value=values["heat"])
             elif event == "heat":
                 heat = float(heat1)
-                getspeed = functions.get_speed1055_1(heat)
+                getspeed = functions.get_speed1055_2(heat)
                 values["speed"] = getspeed
                 window["speed"].update(value=values["speed"])
         except ValueError:
@@ -310,12 +306,12 @@ while True:
         try:
             if event == "speed":
                 speed = float(speed1)
-                getheat = functions.get_heat1055t_1(speed)
+                getheat = functions.get_heat1055t_2(speed)
                 values["heat"] = getheat
                 window["heat"].update(value=values["heat"])
             elif event == "heat":
                 heat = float(heat1)
-                getspeed = functions.get_speed1055t_1(heat)
+                getspeed = functions.get_speed1055t_2(heat)
                 values["speed"] = getspeed
                 window["speed"].update(value=values["speed"])
         except ValueError:
@@ -330,12 +326,12 @@ while True:
         try:
             if event == "speed":
                 speed = float(speed1)
-                getheat = functions.get_heat1055_1(speed)
+                getheat = functions.get_heat2051_2(speed)
                 values["heat"] = getheat
                 window["heat"].update(value=values["heat"])
             elif event == "heat":
                 heat = float(heat1)
-                getspeed = functions.get_speed1055_1(heat)
+                getspeed = functions.get_speed2051_2(heat)
                 values["speed"] = getspeed
                 window["speed"].update(value=values["speed"])
         except ValueError:
@@ -349,12 +345,12 @@ while True:
         try:
             if event == "speed":
                 speed = float(speed1)
-                getheat = functions.get_heat2051t_1(speed)
+                getheat = functions.get_heat2051t_2(speed)
                 values["heat"] = getheat
                 window["heat"].update(value=values["heat"])
             elif event == "heat":
                 heat = float(heat1)
-                getspeed = functions.get_speed2051t_1(heat)
+                getspeed = functions.get_speed2051t_2(heat)
                 values["speed"] = getspeed
                 window["speed"].update(value=values["speed"])
         except ValueError:
@@ -369,12 +365,12 @@ while True:
         try:
             if event == "speed":
                 speed = float(speed1)
-                getheat = functions.get_heat4090_1(speed)
+                getheat = functions.get_heat4090_2(speed)
                 values["heat"] = getheat
                 window["heat"].update(value=values["heat"])
             elif event == "heat":
                 heat = float(heat1)
-                getspeed = functions.get_speed4090_1(heat)
+                getspeed = functions.get_speed4090_2(heat)
                 values["speed"] = getspeed
                 window["speed"].update(value=values["speed"])
         except ValueError:
@@ -388,12 +384,12 @@ while True:
         try:
             if event == "speed":
                 speed = float(speed1)
-                getheat = functions.get_heat4090t_1(speed)
+                getheat = functions.get_heat4090t_2(speed)
                 values["heat"] = getheat
                 window["heat"].update(value=values["heat"])
             elif event == "heat":
                 heat = float(heat1)
-                getspeed = functions.get_speed4090t_1(heat)
+                getspeed = functions.get_speed4090t_2(heat)
                 values["speed"] = getspeed
                 window["speed"].update(value=values["speed"])
         except ValueError:
@@ -408,12 +404,12 @@ while True:
         try:
             if event == "speed":
                 speed = float(speed1)
-                getheat = functions.get_heatvinyl_1(speed)
+                getheat = functions.get_heatvinyl_2(speed)
                 values["heat"] = getheat
                 window["heat"].update(value=values["heat"])
             elif event == "heat":
                 heat = float(heat1)
-                getspeed = functions.get_speedvinyl_1(heat)
+                getspeed = functions.get_speedvinyl_2(heat)
                 values["speed"] = getspeed
                 window["speed"].update(value=values["speed"])
         except ValueError:
@@ -427,12 +423,12 @@ while True:
         try:
             if event == "speed":
                 speed = float(speed1)
-                getheat = functions.get_heatvinylt_1(speed)
+                getheat = functions.get_heatvinylt_2(speed)
                 values["heat"] = getheat
                 window["heat"].update(value=values["heat"])
             elif event == "heat":
                 heat = float(heat1)
-                getspeed = functions.get_speedvinylt_1(heat)
+                getspeed = functions.get_speedvinylt_2(heat)
                 values["speed"] = getspeed
                 window["speed"].update(value=values["speed"])
         except ValueError:
@@ -449,12 +445,12 @@ while True:
         try:
             if event == "speed":
                 speed = float(speed1)
-                getheat = functions.get_heat955_1(speed)
+                getheat = functions.get_heat955_3(speed)
                 values["heat"] = getheat
                 window["heat"].update(value=values["heat"])
             elif event == "heat":
                 heat = float(heat1)
-                getspeed = functions.get_speed955_1(heat)
+                getspeed = functions.get_speed955_3(heat)
                 values["speed"] = getspeed
                 window["speed"].update(value=values["speed"])
         except ValueError:
@@ -468,12 +464,12 @@ while True:
         try:
             if event == "speed":
                 speed = float(speed1)
-                getheat = functions.get_heat955t_1(speed)
+                getheat = functions.get_heat955t_3(speed)
                 values["heat"] = getheat
                 window["heat"].update(value=values["heat"])
             elif event == "heat":
                 heat = float(heat1)
-                getspeed = functions.get_speed955t_1(heat)
+                getspeed = functions.get_speed955t_3(heat)
                 values["speed"] = getspeed
                 window["speed"].update(value=values["speed"])
         except ValueError:
@@ -487,12 +483,12 @@ while True:
         try:
             if event == "speed":
                 speed = float(speed1)
-                getheat = functions.get_heat1055_1(speed)
+                getheat = functions.get_heat1055_3(speed)
                 values["heat"] = getheat
                 window["heat"].update(value=values["heat"])
             elif event == "heat":
                 heat = float(heat1)
-                getspeed = functions.get_speed1055_1(heat)
+                getspeed = functions.get_speed1055_3(heat)
                 values["speed"] = getspeed
                 window["speed"].update(value=values["speed"])
         except ValueError:
@@ -506,12 +502,12 @@ while True:
         try:
             if event == "speed":
                 speed = float(speed1)
-                getheat = functions.get_heat1055t_1(speed)
+                getheat = functions.get_heat1055t_3(speed)
                 values["heat"] = getheat
                 window["heat"].update(value=values["heat"])
             elif event == "heat":
                 heat = float(heat1)
-                getspeed = functions.get_speed1055t_1(heat)
+                getspeed = functions.get_speed1055t_3(heat)
                 values["speed"] = getspeed
                 window["speed"].update(value=values["speed"])
         except ValueError:
@@ -526,12 +522,12 @@ while True:
         try:
             if event == "speed":
                 speed = float(speed1)
-                getheat = functions.get_heat1055_1(speed)
+                getheat = functions.get_heat2051_3(speed)
                 values["heat"] = getheat
                 window["heat"].update(value=values["heat"])
             elif event == "heat":
                 heat = float(heat1)
-                getspeed = functions.get_speed1055_1(heat)
+                getspeed = functions.get_speed2051_3(heat)
                 values["speed"] = getspeed
                 window["speed"].update(value=values["speed"])
         except ValueError:
@@ -545,12 +541,12 @@ while True:
         try:
             if event == "speed":
                 speed = float(speed1)
-                getheat = functions.get_heat2051t_1(speed)
+                getheat = functions.get_heat2051t_3(speed)
                 values["heat"] = getheat
                 window["heat"].update(value=values["heat"])
             elif event == "heat":
                 heat = float(heat1)
-                getspeed = functions.get_speed2051t_1(heat)
+                getspeed = functions.get_speed2051t_3(heat)
                 values["speed"] = getspeed
                 window["speed"].update(value=values["speed"])
         except ValueError:
@@ -565,12 +561,12 @@ while True:
         try:
             if event == "speed":
                 speed = float(speed1)
-                getheat = functions.get_heat4090_1(speed)
+                getheat = functions.get_heat4090_3(speed)
                 values["heat"] = getheat
                 window["heat"].update(value=values["heat"])
             elif event == "heat":
                 heat = float(heat1)
-                getspeed = functions.get_speed4090_1(heat)
+                getspeed = functions.get_speed4090_3(heat)
                 values["speed"] = getspeed
                 window["speed"].update(value=values["speed"])
         except ValueError:
@@ -584,12 +580,12 @@ while True:
         try:
             if event == "speed":
                 speed = float(speed1)
-                getheat = functions.get_heat4090t_1(speed)
+                getheat = functions.get_heat4090t_3(speed)
                 values["heat"] = getheat
                 window["heat"].update(value=values["heat"])
             elif event == "heat":
                 heat = float(heat1)
-                getspeed = functions.get_speed4090t_1(heat)
+                getspeed = functions.get_speed4090t_3(heat)
                 values["speed"] = getspeed
                 window["speed"].update(value=values["speed"])
         except ValueError:
@@ -624,12 +620,12 @@ while True:
         try:
             if event == "speed":
                 speed = float(speed1)
-                getheat = functions.get_heatvinylt_1(speed)
+                getheat = functions.get_heatvinylt_3(speed)
                 values["heat"] = getheat
                 window["heat"].update(value=values["heat"])
             elif event == "heat":
                 heat = float(heat1)
-                getspeed = functions.get_speedvinylt_1(heat)
+                getspeed = functions.get_speedvinylt_3(heat)
                 values["speed"] = getspeed
                 window["speed"].update(value=values["speed"])
         except ValueError:
@@ -647,12 +643,12 @@ while True:
         try:
             if event == "speed":
                 speed = float(speed1)
-                getheat = functions.get_heat955_1(speed)
+                getheat = functions.get_heat955_4(speed)
                 values["heat"] = getheat
                 window["heat"].update(value=values["heat"])
             elif event == "heat":
                 heat = float(heat1)
-                getspeed = functions.get_speed955_1(heat)
+                getspeed = functions.get_speed955_4(heat)
                 values["speed"] = getspeed
                 window["speed"].update(value=values["speed"])
         except ValueError:
@@ -666,12 +662,12 @@ while True:
         try:
             if event == "speed":
                 speed = float(speed1)
-                getheat = functions.get_heat955t_1(speed)
+                getheat = functions.get_heat955t_4(speed)
                 values["heat"] = getheat
                 window["heat"].update(value=values["heat"])
             elif event == "heat":
                 heat = float(heat1)
-                getspeed = functions.get_speed955t_1(heat)
+                getspeed = functions.get_speed955t_4(heat)
                 values["speed"] = getspeed
                 window["speed"].update(value=values["speed"])
         except ValueError:
@@ -685,12 +681,12 @@ while True:
         try:
             if event == "speed":
                 speed = float(speed1)
-                getheat = functions.get_heat1055_1(speed)
+                getheat = functions.get_heat1055_4(speed)
                 values["heat"] = getheat
                 window["heat"].update(value=values["heat"])
             elif event == "heat":
                 heat = float(heat1)
-                getspeed = functions.get_speed1055_1(heat)
+                getspeed = functions.get_speed1055_4(heat)
                 values["speed"] = getspeed
                 window["speed"].update(value=values["speed"])
         except ValueError:
@@ -704,12 +700,12 @@ while True:
         try:
             if event == "speed":
                 speed = float(speed1)
-                getheat = functions.get_heat1055t_1(speed)
+                getheat = functions.get_heat1055t_4(speed)
                 values["heat"] = getheat
                 window["heat"].update(value=values["heat"])
             elif event == "heat":
                 heat = float(heat1)
-                getspeed = functions.get_speed1055t_1(heat)
+                getspeed = functions.get_speed1055t_4(heat)
                 values["speed"] = getspeed
                 window["speed"].update(value=values["speed"])
         except ValueError:
@@ -724,12 +720,12 @@ while True:
         try:
             if event == "speed":
                 speed = float(speed1)
-                getheat = functions.get_heat1055_1(speed)
+                getheat = functions.get_heat2051_4(speed)
                 values["heat"] = getheat
                 window["heat"].update(value=values["heat"])
             elif event == "heat":
                 heat = float(heat1)
-                getspeed = functions.get_speed1055_1(heat)
+                getspeed = functions.get_speed1055_4(heat)
                 values["speed"] = getspeed
                 window["speed"].update(value=values["speed"])
         except ValueError:
@@ -743,7 +739,7 @@ while True:
         try:
             if event == "speed":
                 speed = float(speed1)
-                getheat = functions.get_heat2051t_1(speed)
+                getheat = functions.get_heat2051t_4(speed)
                 values["heat"] = getheat
                 window["heat"].update(value=values["heat"])
             elif event == "heat":
@@ -763,12 +759,12 @@ while True:
         try:
             if event == "speed":
                 speed = float(speed1)
-                getheat = functions.get_heat4090_1(speed)
+                getheat = functions.get_heat4090_4(speed)
                 values["heat"] = getheat
                 window["heat"].update(value=values["heat"])
             elif event == "heat":
                 heat = float(heat1)
-                getspeed = functions.get_speed4090_1(heat)
+                getspeed = functions.get_speed4090_4(heat)
                 values["speed"] = getspeed
                 window["speed"].update(value=values["speed"])
         except ValueError:
@@ -782,12 +778,12 @@ while True:
         try:
             if event == "speed":
                 speed = float(speed1)
-                getheat = functions.get_heat4090t_1(speed)
+                getheat = functions.get_heat4090t_4(speed)
                 values["heat"] = getheat
                 window["heat"].update(value=values["heat"])
             elif event == "heat":
                 heat = float(heat1)
-                getspeed = functions.get_speed4090t_1(heat)
+                getspeed = functions.get_speed4090t_4(heat)
                 values["speed"] = getspeed
                 window["speed"].update(value=values["speed"])
         except ValueError:
@@ -802,12 +798,12 @@ while True:
         try:
             if event == "speed":
                 speed = float(speed1)
-                getheat = functions.get_heatvinyl_1(speed)
+                getheat = functions.get_heatvinyl_4(speed)
                 values["heat"] = getheat
                 window["heat"].update(value=values["heat"])
             elif event == "heat":
                 heat = float(heat1)
-                getspeed = functions.get_speedvinyl_1(heat)
+                getspeed = functions.get_speedvinyl_4(heat)
                 values["speed"] = getspeed
                 window["speed"].update(value=values["speed"])
         except ValueError:
@@ -821,12 +817,12 @@ while True:
         try:
             if event == "speed":
                 speed = float(speed1)
-                getheat = functions.get_heatvinylt_1(speed)
+                getheat = functions.get_heatvinylt_4(speed)
                 values["heat"] = getheat
                 window["heat"].update(value=values["heat"])
             elif event == "heat":
                 heat = float(heat1)
-                getspeed = functions.get_speedvinylt_1(heat)
+                getspeed = functions.get_speedvinylt_4(heat)
                 values["speed"] = getspeed
                 window["speed"].update(value=values["speed"])
         except ValueError:
@@ -839,5 +835,4 @@ while True:
 
 window.close()
 
-if __name__ == "__main__":
-    app.run(host="127.0.0.1", port=8080, debug=True)
+
