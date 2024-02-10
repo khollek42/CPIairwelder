@@ -1,34 +1,30 @@
-
 import functions
 import PySimpleGUI as sg
 
-
-
-
 speedlabel = sg.Text("Speed: ")
-speedinput = sg.InputText(tooltip="Enter the speed", enable_events=True, key="speed", size=(40,15))
+speedinput = sg.InputText(tooltip="Enter the speed", enable_events=True, key="speed", size=(40, 15))
 
 heatlabel = sg.Text("Heat: ")
-heatinput = sg.InputText(tooltip='Enter a temp', enable_events=True, key="heat", size=(40,15))
+heatinput = sg.InputText(tooltip='Enter a temp', enable_events=True, key="heat", size=(40, 15))
 
 machineslabel = sg.Text("Machines: ")
-machines = ['Machine 1','Machine 2', 'Machine 3', 'Machine 4']
-machine_menu = sg.DropDown(machines, size=(10,15), enable_events=True, auto_size_text=True, key="machine")
+machines = ['Machine 1', 'Machine 2', 'Machine 3', 'Machine 4']
+machine_menu = sg.DropDown(machines, size=(10, 15), enable_events=True, auto_size_text=True, key="machine")
 
 materiallabel = sg.Text("Material: ")
 material = ['955', '1055', '2051', '4090', 'vinyl']
-material_menu = sg.DropDown(material, size=(10,15), enable_events=True, auto_size_text=True, key="material")
+material_menu = sg.DropDown(material, size=(10, 15), enable_events=True, auto_size_text=True, key="material")
 
 toslabel = sg.Text("Tape or Seam: ")
 tos = ['Tape', 'Seam']
-tos_menu = sg.DropDown(tos, size=(10,15), enable_events=True, auto_size_text=True, key="tos")
+tos_menu = sg.DropDown(tos, size=(10, 15), enable_events=True, auto_size_text=True, key="tos")
 
 window = sg.Window("CPI welding",
-                   layout= [[machineslabel], [machine_menu],
-                            [materiallabel], [material_menu],
-                            [toslabel], [tos_menu],
-                            [speedlabel], [speedinput],
-                            [heatlabel], [heatinput]],
+                   layout=[[machineslabel], [machine_menu],
+                           [materiallabel], [material_menu],
+                           [toslabel], [tos_menu],
+                           [speedlabel], [speedinput],
+                           [heatlabel], [heatinput]],
                    font=("Helvetica", 15))
 
 # Machine 1 4090t formula needs to be updated
@@ -39,12 +35,15 @@ window = sg.Window("CPI welding",
 
 
 while True:
-    event, values = window.Read()
+    try:
+        event, values = window.Read()
+        if event == sg.WIN_CLOSED:
+            break
 
-#Machine 1
+        # Machine 1
 
-#955
-    if values["machine"] == "Machine 1" and values["material"] == "955" and values["tos"] == "Seam":
+        # 955
+        if values["machine"] == "Machine 1" and values["material"] == "955" and values["tos"] == "Seam":
 
             heat1 = values["heat"]
 
@@ -61,11 +60,12 @@ while True:
                     values["speed"] = getspeed
                     window["speed"].update(value=values["speed"])
 
-
+            except TypeError:
+                continue
             except ValueError:
                 continue
 
-    elif values["machine"] == "Machine 1" and values["material"] == "955" and values["tos"] == "Tape":
+        elif values["machine"] == "Machine 1" and values["material"] == "955" and values["tos"] == "Tape":
 
             heat1 = values["heat"]
 
@@ -83,8 +83,8 @@ while True:
                     window["speed"].update(value=values["speed"])
             except ValueError:
                 continue
-#1055
-    if values["machine"] == "Machine 1" and values["material"] == "1055" and values["tos"] == "Seam":
+        # 1055
+        if values["machine"] == "Machine 1" and values["material"] == "1055" and values["tos"] == "Seam":
 
             heat1 = values["heat"]
 
@@ -103,7 +103,7 @@ while True:
             except ValueError:
                 continue
 
-    elif values["machine"] == "Machine 1" and values["material"] == "1055" and values["tos"] == "Tape":
+        elif values["machine"] == "Machine 1" and values["material"] == "1055" and values["tos"] == "Tape":
 
             heat1 = values["heat"]
 
@@ -122,8 +122,8 @@ while True:
             except ValueError:
                 continue
 
-#2051
-    if values["machine"] == "Machine 1" and values["material"] == "2051" and values["tos"] == "Seam":
+        # 2051
+        if values["machine"] == "Machine 1" and values["material"] == "2051" and values["tos"] == "Seam":
 
             heat1 = values["heat"]
 
@@ -142,7 +142,7 @@ while True:
             except ValueError:
                 continue
 
-    elif values["machine"] == "Machine 1" and values["material"] == "2051" and values["tos"] == "Tape":
+        elif values["machine"] == "Machine 1" and values["material"] == "2051" and values["tos"] == "Tape":
 
             heat1 = values["heat"]
 
@@ -161,8 +161,8 @@ while True:
             except ValueError:
                 continue
 
-#4090
-    elif values["machine"] == "Machine 1" and values["material"] == "4090" and values["tos"] == "Seam":
+        # 4090
+        elif values["machine"] == "Machine 1" and values["material"] == "4090" and values["tos"] == "Seam":
 
             heat1 = values["heat"]
 
@@ -181,27 +181,27 @@ while True:
             except ValueError:
                 continue
 
-    elif values["machine"] == "Machine 1" and values["material"] == "4090" and values["tos"] == "Tape":
+        elif values["machine"] == "Machine 1" and values["material"] == "4090" and values["tos"] == "Tape":
 
-        heat1 = values["heat"]
+            heat1 = values["heat"]
 
-        speed1 = values["speed"]
-        try:
-            if event == "speed":
-                speed = float(speed1)
-                getheat = functions.get_heat4090t_1(speed)
-                values["heat"] = getheat
-                window["heat"].update(value=values["heat"])
-            elif event == "heat":
-                heat = float(heat1)
-                getspeed = functions.get_speed4090t_1(heat)
-                values["speed"] = getspeed
-                window["speed"].update(value=values["speed"])
-        except ValueError:
-            continue
+            speed1 = values["speed"]
+            try:
+                if event == "speed":
+                    speed = float(speed1)
+                    getheat = functions.get_heat4090t_1(speed)
+                    values["heat"] = getheat
+                    window["heat"].update(value=values["heat"])
+                elif event == "heat":
+                    heat = float(heat1)
+                    getspeed = functions.get_speed4090t_1(heat)
+                    values["speed"] = getspeed
+                    window["speed"].update(value=values["speed"])
+            except ValueError:
+                continue
 
-#Vinyl
-    elif values["machine"] == "Machine 1" and values["material"] == "vinyl" and values["tos"] == "Seam":
+        # Vinyl
+        elif values["machine"] == "Machine 1" and values["material"] == "vinyl" and values["tos"] == "Seam":
 
             heat1 = values["heat"]
 
@@ -220,7 +220,7 @@ while True:
             except ValueError:
                 continue
 
-    elif values["machine"] == "Machine 1" and values["material"] == "vinyl" and values["tos"] == "Tape":
+        elif values["machine"] == "Machine 1" and values["material"] == "vinyl" and values["tos"] == "Tape":
 
             heat1 = values["heat"]
 
@@ -239,600 +239,602 @@ while True:
             except ValueError:
                 continue
 
-#Machine 2
-    # 955
-    if values["machine"] == "Machine 2" and values["material"] == "955" and values["tos"] == "Seam":
+        # Machine 2
+        # 955
+        if values["machine"] == "Machine 2" and values["material"] == "955" and values["tos"] == "Seam":
 
-        heat1 = values["heat"]
+            heat1 = values["heat"]
 
-        speed1 = values["speed"]
-        try:
-            if event == "speed":
-                speed = float(speed1)
-                getheat = functions.get_heat955_2(speed)
-                values["heat"] = getheat
-                window["heat"].update(value=values["heat"])
-            elif event == "heat":
-                heat = float(heat1)
-                getspeed = functions.get_speed955_2(heat)
-                values["speed"] = getspeed
-                window["speed"].update(value=values["speed"])
-        except ValueError:
-            continue
+            speed1 = values["speed"]
+            try:
+                if event == "speed":
+                    speed = float(speed1)
+                    getheat = functions.get_heat955_2(speed)
+                    values["heat"] = getheat
+                    window["heat"].update(value=values["heat"])
+                elif event == "heat":
+                    heat = float(heat1)
+                    getspeed = functions.get_speed955_2(heat)
+                    values["speed"] = getspeed
+                    window["speed"].update(value=values["speed"])
+            except ValueError:
+                continue
 
-    elif values["machine"] == "Machine 2" and values["material"] == "955" and values["tos"] == "Tape":
+        elif values["machine"] == "Machine 2" and values["material"] == "955" and values["tos"] == "Tape":
 
-        heat1 = values["heat"]
+            heat1 = values["heat"]
 
-        speed1 = values["speed"]
-        try:
-            if event == "speed":
-                speed = float(speed1)
-                getheat = functions.get_heat955t_2(speed)
-                values["heat"] = getheat
-                window["heat"].update(value=values["heat"])
-            elif event == "heat":
-                heat = float(heat1)
-                getspeed = functions.get_speed955t_2(heat)
-                values["speed"] = getspeed
-                window["speed"].update(value=values["speed"])
-        except ValueError:
-            continue
+            speed1 = values["speed"]
+            try:
+                if event == "speed":
+                    speed = float(speed1)
+                    getheat = functions.get_heat955t_2(speed)
+                    values["heat"] = getheat
+                    window["heat"].update(value=values["heat"])
+                elif event == "heat":
+                    heat = float(heat1)
+                    getspeed = functions.get_speed955t_2(heat)
+                    values["speed"] = getspeed
+                    window["speed"].update(value=values["speed"])
+            except ValueError:
+                continue
+            # 1055
+        if values["machine"] == "Machine 2" and values["material"] == "1055" and values["tos"] == "Seam":
+
+            heat1 = values["heat"]
+
+            speed1 = values["speed"]
+            try:
+                if event == "speed":
+                    speed = float(speed1)
+                    getheat = functions.get_heat1055_2(speed)
+                    values["heat"] = getheat
+                    window["heat"].update(value=values["heat"])
+                elif event == "heat":
+                    heat = float(heat1)
+                    getspeed = functions.get_speed1055_2(heat)
+                    values["speed"] = getspeed
+                    window["speed"].update(value=values["speed"])
+            except ValueError:
+                continue
+
+        elif values["machine"] == "Machine 2" and values["material"] == "1055" and values["tos"] == "Tape":
+
+            heat1 = values["heat"]
+
+            speed1 = values["speed"]
+            try:
+                if event == "speed":
+                    speed = float(speed1)
+                    getheat = functions.get_heat1055t_2(speed)
+                    values["heat"] = getheat
+                    window["heat"].update(value=values["heat"])
+                elif event == "heat":
+                    heat = float(heat1)
+                    getspeed = functions.get_speed1055t_2(heat)
+                    values["speed"] = getspeed
+                    window["speed"].update(value=values["speed"])
+            except ValueError:
+                continue
+
+            # 2051
+        if values["machine"] == "Machine 2" and values["material"] == "2051" and values["tos"] == "Seam":
+
+            heat1 = values["heat"]
+
+            speed1 = values["speed"]
+            try:
+                if event == "speed":
+                    speed = float(speed1)
+                    getheat = functions.get_heat2051_2(speed)
+                    values["heat"] = getheat
+                    window["heat"].update(value=values["heat"])
+                elif event == "heat":
+                    heat = float(heat1)
+                    getspeed = functions.get_speed2051_2(heat)
+                    values["speed"] = getspeed
+                    window["speed"].update(value=values["speed"])
+            except ValueError:
+                continue
+
+        elif values["machine"] == "Machine 2" and values["material"] == "2051" and values["tos"] == "Tape":
+
+            heat1 = values["heat"]
+
+            speed1 = values["speed"]
+            try:
+                if event == "speed":
+                    speed = float(speed1)
+                    getheat = functions.get_heat2051t_2(speed)
+                    values["heat"] = getheat
+                    window["heat"].update(value=values["heat"])
+                elif event == "heat":
+                    heat = float(heat1)
+                    getspeed = functions.get_speed2051t_2(heat)
+                    values["speed"] = getspeed
+                    window["speed"].update(value=values["speed"])
+            except ValueError:
+                continue
+
+            # 4090
+        elif values["machine"] == "Machine 2" and values["material"] == "4090" and values["tos"] == "Seam":
+
+            heat1 = values["heat"]
+
+            speed1 = values["speed"]
+            try:
+                if event == "speed":
+                    speed = float(speed1)
+                    getheat = functions.get_heat4090_2(speed)
+                    values["heat"] = getheat
+                    window["heat"].update(value=values["heat"])
+                elif event == "heat":
+                    heat = float(heat1)
+                    getspeed = functions.get_speed4090_2(heat)
+                    values["speed"] = getspeed
+                    window["speed"].update(value=values["speed"])
+            except ValueError:
+                continue
+
+        elif values["machine"] == "Machine 2" and values["material"] == "4090" and values["tos"] == "Tape":
+
+            heat1 = values["heat"]
+
+            speed1 = values["speed"]
+            try:
+                if event == "speed":
+                    speed = float(speed1)
+                    getheat = functions.get_heat4090t_2(speed)
+                    values["heat"] = getheat
+                    window["heat"].update(value=values["heat"])
+                elif event == "heat":
+                    heat = float(heat1)
+                    getspeed = functions.get_speed4090t_2(heat)
+                    values["speed"] = getspeed
+                    window["speed"].update(value=values["speed"])
+            except ValueError:
+                continue
+
+            # Vinyl
+        elif values["machine"] == "Machine 2" and values["material"] == "vinyl" and values["tos"] == "Seam":
+
+            heat1 = values["heat"]
+
+            speed1 = values["speed"]
+            try:
+                if event == "speed":
+                    speed = float(speed1)
+                    getheat = functions.get_heatvinyl_2(speed)
+                    values["heat"] = getheat
+                    window["heat"].update(value=values["heat"])
+                elif event == "heat":
+                    heat = float(heat1)
+                    getspeed = functions.get_speedvinyl_2(heat)
+                    values["speed"] = getspeed
+                    window["speed"].update(value=values["speed"])
+            except ValueError:
+                continue
+
+        elif values["machine"] == "Machine 2" and values["material"] == "vinyl" and values["tos"] == "Tape":
+
+            heat1 = values["heat"]
+
+            speed1 = values["speed"]
+            try:
+                if event == "speed":
+                    speed = float(speed1)
+                    getheat = functions.get_heatvinylt_2(speed)
+                    values["heat"] = getheat
+                    window["heat"].update(value=values["heat"])
+                elif event == "heat":
+                    heat = float(heat1)
+                    getspeed = functions.get_speedvinylt_2(heat)
+                    values["speed"] = getspeed
+                    window["speed"].update(value=values["speed"])
+            except ValueError:
+                continue
+
+        # Machine 3
+        # 955
+        if values["machine"] == "Machine 3" and values["material"] == "955" and values["tos"] == "Seam":
+
+            heat1 = values["heat"]
+
+            speed1 = values["speed"]
+            try:
+                if event == "speed":
+                    speed = float(speed1)
+                    getheat = functions.get_heat955_3(speed)
+                    values["heat"] = getheat
+                    window["heat"].update(value=values["heat"])
+                elif event == "heat":
+                    heat = float(heat1)
+                    getspeed = functions.get_speed955_3(heat)
+                    values["speed"] = getspeed
+                    window["speed"].update(value=values["speed"])
+            except ValueError:
+                continue
+
+        elif values["machine"] == "Machine 3" and values["material"] == "955" and values["tos"] == "Tape":
+
+            heat1 = values["heat"]
+
+            speed1 = values["speed"]
+            try:
+                if event == "speed":
+                    speed = float(speed1)
+                    getheat = functions.get_heat955t_3(speed)
+                    values["heat"] = getheat
+                    window["heat"].update(value=values["heat"])
+                elif event == "heat":
+                    heat = float(heat1)
+                    getspeed = functions.get_speed955t_3(heat)
+                    values["speed"] = getspeed
+                    window["speed"].update(value=values["speed"])
+            except ValueError:
+                continue
         # 1055
-    if values["machine"] == "Machine 2" and values["material"] == "1055" and values["tos"] == "Seam":
+        if values["machine"] == "Machine 3" and values["material"] == "1055" and values["tos"] == "Seam":
 
-        heat1 = values["heat"]
+            heat1 = values["heat"]
 
-        speed1 = values["speed"]
-        try:
-            if event == "speed":
-                speed = float(speed1)
-                getheat = functions.get_heat1055_2(speed)
-                values["heat"] = getheat
-                window["heat"].update(value=values["heat"])
-            elif event == "heat":
-                heat = float(heat1)
-                getspeed = functions.get_speed1055_2(heat)
-                values["speed"] = getspeed
-                window["speed"].update(value=values["speed"])
-        except ValueError:
-            continue
+            speed1 = values["speed"]
+            try:
+                if event == "speed":
+                    speed = float(speed1)
+                    getheat = functions.get_heat1055_3(speed)
+                    values["heat"] = getheat
+                    window["heat"].update(value=values["heat"])
+                elif event == "heat":
+                    heat = float(heat1)
+                    getspeed = functions.get_speed1055_3(heat)
+                    values["speed"] = getspeed
+                    window["speed"].update(value=values["speed"])
+            except ValueError:
+                continue
 
-    elif values["machine"] == "Machine 2" and values["material"] == "1055" and values["tos"] == "Tape":
+        elif values["machine"] == "Machine 3" and values["material"] == "1055" and values["tos"] == "Tape":
 
-        heat1 = values["heat"]
+            heat1 = values["heat"]
 
-        speed1 = values["speed"]
-        try:
-            if event == "speed":
-                speed = float(speed1)
-                getheat = functions.get_heat1055t_2(speed)
-                values["heat"] = getheat
-                window["heat"].update(value=values["heat"])
-            elif event == "heat":
-                heat = float(heat1)
-                getspeed = functions.get_speed1055t_2(heat)
-                values["speed"] = getspeed
-                window["speed"].update(value=values["speed"])
-        except ValueError:
-            continue
+            speed1 = values["speed"]
+            try:
+                if event == "speed":
+                    speed = float(speed1)
+                    getheat = functions.get_heat1055t_3(speed)
+                    values["heat"] = getheat
+                    window["heat"].update(value=values["heat"])
+                elif event == "heat":
+                    heat = float(heat1)
+                    getspeed = functions.get_speed1055t_3(heat)
+                    values["speed"] = getspeed
+                    window["speed"].update(value=values["speed"])
+            except ValueError:
+                continue
 
         # 2051
-    if values["machine"] == "Machine 2" and values["material"] == "2051" and values["tos"] == "Seam":
+        if values["machine"] == "Machine 3" and values["material"] == "2051" and values["tos"] == "Seam":
 
-        heat1 = values["heat"]
+            heat1 = values["heat"]
 
-        speed1 = values["speed"]
-        try:
-            if event == "speed":
-                speed = float(speed1)
-                getheat = functions.get_heat2051_2(speed)
-                values["heat"] = getheat
-                window["heat"].update(value=values["heat"])
-            elif event == "heat":
-                heat = float(heat1)
-                getspeed = functions.get_speed2051_2(heat)
-                values["speed"] = getspeed
-                window["speed"].update(value=values["speed"])
-        except ValueError:
-            continue
+            speed1 = values["speed"]
+            try:
+                if event == "speed":
+                    speed = float(speed1)
+                    getheat = functions.get_heat2051_3(speed)
+                    values["heat"] = getheat
+                    window["heat"].update(value=values["heat"])
+                elif event == "heat":
+                    heat = float(heat1)
+                    getspeed = functions.get_speed2051_3(heat)
+                    values["speed"] = getspeed
+                    window["speed"].update(value=values["speed"])
+            except ValueError:
+                continue
 
-    elif values["machine"] == "Machine 2" and values["material"] == "2051" and values["tos"] == "Tape":
+        elif values["machine"] == "Machine 3" and values["material"] == "2051" and values["tos"] == "Tape":
 
-        heat1 = values["heat"]
+            heat1 = values["heat"]
 
-        speed1 = values["speed"]
-        try:
-            if event == "speed":
-                speed = float(speed1)
-                getheat = functions.get_heat2051t_2(speed)
-                values["heat"] = getheat
-                window["heat"].update(value=values["heat"])
-            elif event == "heat":
-                heat = float(heat1)
-                getspeed = functions.get_speed2051t_2(heat)
-                values["speed"] = getspeed
-                window["speed"].update(value=values["speed"])
-        except ValueError:
-            continue
+            speed1 = values["speed"]
+            try:
+                if event == "speed":
+                    speed = float(speed1)
+                    getheat = functions.get_heat2051t_3(speed)
+                    values["heat"] = getheat
+                    window["heat"].update(value=values["heat"])
+                elif event == "heat":
+                    heat = float(heat1)
+                    getspeed = functions.get_speed2051t_3(heat)
+                    values["speed"] = getspeed
+                    window["speed"].update(value=values["speed"])
+            except ValueError:
+                continue
 
         # 4090
-    elif values["machine"] == "Machine 2" and values["material"] == "4090" and values["tos"] == "Seam":
+        elif values["machine"] == "Machine 3" and values["material"] == "4090" and values["tos"] == "Seam":
 
-        heat1 = values["heat"]
+            heat1 = values["heat"]
 
-        speed1 = values["speed"]
-        try:
-            if event == "speed":
-                speed = float(speed1)
-                getheat = functions.get_heat4090_2(speed)
-                values["heat"] = getheat
-                window["heat"].update(value=values["heat"])
-            elif event == "heat":
-                heat = float(heat1)
-                getspeed = functions.get_speed4090_2(heat)
-                values["speed"] = getspeed
-                window["speed"].update(value=values["speed"])
-        except ValueError:
-            continue
+            speed1 = values["speed"]
+            try:
+                if event == "speed":
+                    speed = float(speed1)
+                    getheat = functions.get_heat4090_3(speed)
+                    values["heat"] = getheat
+                    window["heat"].update(value=values["heat"])
+                elif event == "heat":
+                    heat = float(heat1)
+                    getspeed = functions.get_speed4090_3(heat)
+                    values["speed"] = getspeed
+                    window["speed"].update(value=values["speed"])
+            except ValueError:
+                continue
 
-    elif values["machine"] == "Machine 2" and values["material"] == "4090" and values["tos"] == "Tape":
+        elif values["machine"] == "Machine 3" and values["material"] == "4090" and values["tos"] == "Tape":
 
-        heat1 = values["heat"]
+            heat1 = values["heat"]
 
-        speed1 = values["speed"]
-        try:
-            if event == "speed":
-                speed = float(speed1)
-                getheat = functions.get_heat4090t_2(speed)
-                values["heat"] = getheat
-                window["heat"].update(value=values["heat"])
-            elif event == "heat":
-                heat = float(heat1)
-                getspeed = functions.get_speed4090t_2(heat)
-                values["speed"] = getspeed
-                window["speed"].update(value=values["speed"])
-        except ValueError:
-            continue
+            speed1 = values["speed"]
+            try:
+                if event == "speed":
+                    speed = float(speed1)
+                    getheat = functions.get_heat4090t_3(speed)
+                    values["heat"] = getheat
+                    window["heat"].update(value=values["heat"])
+                elif event == "heat":
+                    heat = float(heat1)
+                    getspeed = functions.get_speed4090t_3(heat)
+                    values["speed"] = getspeed
+                    window["speed"].update(value=values["speed"])
+            except ValueError:
+                continue
 
         # Vinyl
-    elif values["machine"] == "Machine 2" and values["material"] == "vinyl" and values["tos"] == "Seam":
-
-        heat1 = values["heat"]
-
-        speed1 = values["speed"]
-        try:
-            if event == "speed":
-                speed = float(speed1)
-                getheat = functions.get_heatvinyl_2(speed)
-                values["heat"] = getheat
-                window["heat"].update(value=values["heat"])
-            elif event == "heat":
-                heat = float(heat1)
-                getspeed = functions.get_speedvinyl_2(heat)
-                values["speed"] = getspeed
-                window["speed"].update(value=values["speed"])
-        except ValueError:
-            continue
-
-    elif values["machine"] == "Machine 2" and values["material"] == "vinyl" and values["tos"] == "Tape":
-
-        heat1 = values["heat"]
-
-        speed1 = values["speed"]
-        try:
-            if event == "speed":
-                speed = float(speed1)
-                getheat = functions.get_heatvinylt_2(speed)
-                values["heat"] = getheat
-                window["heat"].update(value=values["heat"])
-            elif event == "heat":
-                heat = float(heat1)
-                getspeed = functions.get_speedvinylt_2(heat)
-                values["speed"] = getspeed
-                window["speed"].update(value=values["speed"])
-        except ValueError:
-            continue
-
-
-#Machine 3
-    # 955
-    if values["machine"] == "Machine 3" and values["material"] == "955" and values["tos"] == "Seam":
-
-        heat1 = values["heat"]
-
-        speed1 = values["speed"]
-        try:
-            if event == "speed":
-                speed = float(speed1)
-                getheat = functions.get_heat955_3(speed)
-                values["heat"] = getheat
-                window["heat"].update(value=values["heat"])
-            elif event == "heat":
-                heat = float(heat1)
-                getspeed = functions.get_speed955_3(heat)
-                values["speed"] = getspeed
-                window["speed"].update(value=values["speed"])
-        except ValueError:
-            continue
-
-    elif values["machine"] == "Machine 3" and values["material"] == "955" and values["tos"] == "Tape":
-
-        heat1 = values["heat"]
-
-        speed1 = values["speed"]
-        try:
-            if event == "speed":
-                speed = float(speed1)
-                getheat = functions.get_heat955t_3(speed)
-                values["heat"] = getheat
-                window["heat"].update(value=values["heat"])
-            elif event == "heat":
-                heat = float(heat1)
-                getspeed = functions.get_speed955t_3(heat)
-                values["speed"] = getspeed
-                window["speed"].update(value=values["speed"])
-        except ValueError:
-            continue
-    # 1055
-    if values["machine"] == "Machine 3" and values["material"] == "1055" and values["tos"] == "Seam":
-
-        heat1 = values["heat"]
-
-        speed1 = values["speed"]
-        try:
-            if event == "speed":
-                speed = float(speed1)
-                getheat = functions.get_heat1055_3(speed)
-                values["heat"] = getheat
-                window["heat"].update(value=values["heat"])
-            elif event == "heat":
-                heat = float(heat1)
-                getspeed = functions.get_speed1055_3(heat)
-                values["speed"] = getspeed
-                window["speed"].update(value=values["speed"])
-        except ValueError:
-            continue
-
-    elif values["machine"] == "Machine 3" and values["material"] == "1055" and values["tos"] == "Tape":
-
-        heat1 = values["heat"]
-
-        speed1 = values["speed"]
-        try:
-            if event == "speed":
-                speed = float(speed1)
-                getheat = functions.get_heat1055t_3(speed)
-                values["heat"] = getheat
-                window["heat"].update(value=values["heat"])
-            elif event == "heat":
-                heat = float(heat1)
-                getspeed = functions.get_speed1055t_3(heat)
-                values["speed"] = getspeed
-                window["speed"].update(value=values["speed"])
-        except ValueError:
-            continue
-
-    # 2051
-    if values["machine"] == "Machine 3" and values["material"] == "2051" and values["tos"] == "Seam":
-
-        heat1 = values["heat"]
-
-        speed1 = values["speed"]
-        try:
-            if event == "speed":
-                speed = float(speed1)
-                getheat = functions.get_heat2051_3(speed)
-                values["heat"] = getheat
-                window["heat"].update(value=values["heat"])
-            elif event == "heat":
-                heat = float(heat1)
-                getspeed = functions.get_speed2051_3(heat)
-                values["speed"] = getspeed
-                window["speed"].update(value=values["speed"])
-        except ValueError:
-            continue
-
-    elif values["machine"] == "Machine 3" and values["material"] == "2051" and values["tos"] == "Tape":
-
-        heat1 = values["heat"]
-
-        speed1 = values["speed"]
-        try:
-            if event == "speed":
-                speed = float(speed1)
-                getheat = functions.get_heat2051t_3(speed)
-                values["heat"] = getheat
-                window["heat"].update(value=values["heat"])
-            elif event == "heat":
-                heat = float(heat1)
-                getspeed = functions.get_speed2051t_3(heat)
-                values["speed"] = getspeed
-                window["speed"].update(value=values["speed"])
-        except ValueError:
-            continue
-
-    # 4090
-    elif values["machine"] == "Machine 3" and values["material"] == "4090" and values["tos"] == "Seam":
-
-        heat1 = values["heat"]
-
-        speed1 = values["speed"]
-        try:
-            if event == "speed":
-                speed = float(speed1)
-                getheat = functions.get_heat4090_3(speed)
-                values["heat"] = getheat
-                window["heat"].update(value=values["heat"])
-            elif event == "heat":
-                heat = float(heat1)
-                getspeed = functions.get_speed4090_3(heat)
-                values["speed"] = getspeed
-                window["speed"].update(value=values["speed"])
-        except ValueError:
-            continue
-
-    elif values["machine"] == "Machine 3" and values["material"] == "4090" and values["tos"] == "Tape":
-
-        heat1 = values["heat"]
-
-        speed1 = values["speed"]
-        try:
-            if event == "speed":
-                speed = float(speed1)
-                getheat = functions.get_heat4090t_3(speed)
-                values["heat"] = getheat
-                window["heat"].update(value=values["heat"])
-            elif event == "heat":
-                heat = float(heat1)
-                getspeed = functions.get_speed4090t_3(heat)
-                values["speed"] = getspeed
-                window["speed"].update(value=values["speed"])
-        except ValueError:
-            continue
-
-# Vinyl
-
-    elif values["machine"] == "Machine 3" and values["material"] == "vinyl" and values["tos"] == "Seam":
-
-        heat1 = values["heat"]
-
-        speed1 = values["speed"]
-        try:
-            if event == "speed":
-                speed = float(speed1)
-                getheat = functions.get_heatvinyl_3(speed)
-                values["heat"] = getheat
-                window["heat"].update(value=values["heat"])
-            elif event == "heat":
-                heat = float(heat1)
-                getspeed = functions.get_speedvinyl_3(heat)
-                values["speed"] = getspeed
-                window["speed"].update(value=values["speed"])
-        except ValueError:
-            continue
-
-    elif values["machine"] == "Machine 3" and values["material"] == "vinyl" and values["tos"] == "Tape":
-
-        heat1 = values["heat"]
-
-        speed1 = values["speed"]
-        try:
-            if event == "speed":
-                speed = float(speed1)
-                getheat = functions.get_heatvinylt_3(speed)
-                values["heat"] = getheat
-                window["heat"].update(value=values["heat"])
-            elif event == "heat":
-                heat = float(heat1)
-                getspeed = functions.get_speedvinylt_3(heat)
-                values["speed"] = getspeed
-                window["speed"].update(value=values["speed"])
-        except ValueError:
-            continue
-
-
-
-#Machine 4
-    # 955
-    if values["machine"] == "Machine 4" and values["material"] == "955" and values["tos"] == "Seam":
-
-        heat1 = values["heat"]
-
-        speed1 = values["speed"]
-        try:
-            if event == "speed":
-                speed = float(speed1)
-                getheat = functions.get_heat955_4(speed)
-                values["heat"] = getheat
-                window["heat"].update(value=values["heat"])
-            elif event == "heat":
-                heat = float(heat1)
-                getspeed = functions.get_speed955_4(heat)
-                values["speed"] = getspeed
-                window["speed"].update(value=values["speed"])
-        except ValueError:
-            continue
-
-    elif values["machine"] == "Machine 4" and values["material"] == "955" and values["tos"] == "Tape":
-
-        heat1 = values["heat"]
-
-        speed1 = values["speed"]
-        try:
-            if event == "speed":
-                speed = float(speed1)
-                getheat = functions.get_heat955t_4(speed)
-                values["heat"] = getheat
-                window["heat"].update(value=values["heat"])
-            elif event == "heat":
-                heat = float(heat1)
-                getspeed = functions.get_speed955t_4(heat)
-                values["speed"] = getspeed
-                window["speed"].update(value=values["speed"])
-        except ValueError:
-            continue
-        # 1055
-    if values["machine"] == "Machine 4" and values["material"] == "1055" and values["tos"] == "Seam":
-
-        heat1 = values["heat"]
-
-        speed1 = values["speed"]
-        try:
-            if event == "speed":
-                speed = float(speed1)
-                getheat = functions.get_heat1055_4(speed)
-                values["heat"] = getheat
-                window["heat"].update(value=values["heat"])
-            elif event == "heat":
-                heat = float(heat1)
-                getspeed = functions.get_speed1055_4(heat)
-                values["speed"] = getspeed
-                window["speed"].update(value=values["speed"])
-        except ValueError:
-            continue
-
-    elif values["machine"] == "Machine 4" and values["material"] == "1055" and values["tos"] == "Tape":
-
-        heat1 = values["heat"]
-
-        speed1 = values["speed"]
-        try:
-            if event == "speed":
-                speed = float(speed1)
-                getheat = functions.get_heat1055t_4(speed)
-                values["heat"] = getheat
-                window["heat"].update(value=values["heat"])
-            elif event == "heat":
-                heat = float(heat1)
-                getspeed = functions.get_speed1055t_4(heat)
-                values["speed"] = getspeed
-                window["speed"].update(value=values["speed"])
-        except ValueError:
-            continue
-
-        # 2051
-    if values["machine"] == "Machine 4" and values["material"] == "2051" and values["tos"] == "Seam":
-
-        heat1 = values["heat"]
-
-        speed1 = values["speed"]
-        try:
-            if event == "speed":
-                speed = float(speed1)
-                getheat = functions.get_heat2051_4(speed)
-                values["heat"] = getheat
-                window["heat"].update(value=values["heat"])
-            elif event == "heat":
-                heat = float(heat1)
-                getspeed = functions.get_speed1055_4(heat)
-                values["speed"] = getspeed
-                window["speed"].update(value=values["speed"])
-        except ValueError:
-            continue
-
-    elif values["machine"] == "Machine 4" and values["material"] == "2051" and values["tos"] == "Tape":
-
-        heat1 = values["heat"]
-
-        speed1 = values["speed"]
-        try:
-            if event == "speed":
-                speed = float(speed1)
-                getheat = functions.get_heat2051t_4(speed)
-                values["heat"] = getheat
-                window["heat"].update(value=values["heat"])
-            elif event == "heat":
-                heat = float(heat1)
-                getspeed = functions.get_speed2051t_1(heat)
-                values["speed"] = getspeed
-                window["speed"].update(value=values["speed"])
-        except ValueError:
-            continue
-
-        # 4090
-    elif values["machine"] == "Machine 4" and values["material"] == "4090" and values["tos"] == "Seam":
-
-        heat1 = values["heat"]
-
-        speed1 = values["speed"]
-        try:
-            if event == "speed":
-                speed = float(speed1)
-                getheat = functions.get_heat4090_4(speed)
-                values["heat"] = getheat
-                window["heat"].update(value=values["heat"])
-            elif event == "heat":
-                heat = float(heat1)
-                getspeed = functions.get_speed4090_4(heat)
-                values["speed"] = getspeed
-                window["speed"].update(value=values["speed"])
-        except ValueError:
-            continue
-
-    elif values["machine"] == "Machine 4" and values["material"] == "4090" and values["tos"] == "Tape":
-
-        heat1 = values["heat"]
-
-        speed1 = values["speed"]
-        try:
-            if event == "speed":
-                speed = float(speed1)
-                getheat = functions.get_heat4090t_4(speed)
-                values["heat"] = getheat
-                window["heat"].update(value=values["heat"])
-            elif event == "heat":
-                heat = float(heat1)
-                getspeed = functions.get_speed4090t_4(heat)
-                values["speed"] = getspeed
-                window["speed"].update(value=values["speed"])
-        except ValueError:
-            continue
-
-        # Vinyl
-    elif values["machine"] == "Machine 4" and values["material"] == "vinyl" and values["tos"] == "Seam":
-
-        heat1 = values["heat"]
-
-        speed1 = values["speed"]
-        try:
-            if event == "speed":
-                speed = float(speed1)
-                getheat = functions.get_heatvinyl_4(speed)
-                values["heat"] = getheat
-                window["heat"].update(value=values["heat"])
-            elif event == "heat":
-                heat = float(heat1)
-                getspeed = functions.get_speedvinyl_4(heat)
-                values["speed"] = getspeed
-                window["speed"].update(value=values["speed"])
-        except ValueError:
-            continue
-
-    elif values["machine"] == "Machine 4" and values["material"] == "vinyl" and values["tos"] == "Tape":
-
-        heat1 = values["heat"]
-
-        speed1 = values["speed"]
-        try:
-            if event == "speed":
-                speed = float(speed1)
-                getheat = functions.get_heatvinylt_4(speed)
-                values["heat"] = getheat
-                window["heat"].update(value=values["heat"])
-            elif event == "heat":
-                heat = float(heat1)
-                getspeed = functions.get_speedvinylt_4(heat)
-                values["speed"] = getspeed
-                window["speed"].update(value=values["speed"])
-        except ValueError:
-            continue
-
-#show events and there values
+
+        elif values["machine"] == "Machine 3" and values["material"] == "vinyl" and values["tos"] == "Seam":
+
+            heat1 = values["heat"]
+
+            speed1 = values["speed"]
+            try:
+                if event == "speed":
+                    speed = float(speed1)
+                    getheat = functions.get_heatvinyl_3(speed)
+                    values["heat"] = getheat
+                    window["heat"].update(value=values["heat"])
+                elif event == "heat":
+                    heat = float(heat1)
+                    getspeed = functions.get_speedvinyl_3(heat)
+                    values["speed"] = getspeed
+                    window["speed"].update(value=values["speed"])
+            except ValueError:
+                continue
+
+        elif values["machine"] == "Machine 3" and values["material"] == "vinyl" and values["tos"] == "Tape":
+
+            heat1 = values["heat"]
+
+            speed1 = values["speed"]
+            try:
+                if event == "speed":
+                    speed = float(speed1)
+                    getheat = functions.get_heatvinylt_3(speed)
+                    values["heat"] = getheat
+                    window["heat"].update(value=values["heat"])
+                elif event == "heat":
+                    heat = float(heat1)
+                    getspeed = functions.get_speedvinylt_3(heat)
+                    values["speed"] = getspeed
+                    window["speed"].update(value=values["speed"])
+            except ValueError:
+                continue
+
+        # Machine 4
+        # 955
+        if values["machine"] == "Machine 4" and values["material"] == "955" and values["tos"] == "Seam":
+
+            heat1 = values["heat"]
+
+            speed1 = values["speed"]
+            try:
+                if event == "speed":
+                    speed = float(speed1)
+                    getheat = functions.get_heat955_4(speed)
+                    values["heat"] = getheat
+                    window["heat"].update(value=values["heat"])
+                elif event == "heat":
+                    heat = float(heat1)
+                    getspeed = functions.get_speed955_4(heat)
+                    values["speed"] = getspeed
+                    window["speed"].update(value=values["speed"])
+            except ValueError:
+                continue
+
+        elif values["machine"] == "Machine 4" and values["material"] == "955" and values["tos"] == "Tape":
+
+            heat1 = values["heat"]
+
+            speed1 = values["speed"]
+            try:
+                if event == "speed":
+                    speed = float(speed1)
+                    getheat = functions.get_heat955t_4(speed)
+                    values["heat"] = getheat
+                    window["heat"].update(value=values["heat"])
+                elif event == "heat":
+                    heat = float(heat1)
+                    getspeed = functions.get_speed955t_4(heat)
+                    values["speed"] = getspeed
+                    window["speed"].update(value=values["speed"])
+            except ValueError:
+                continue
+            # 1055
+        if values["machine"] == "Machine 4" and values["material"] == "1055" and values["tos"] == "Seam":
+
+            heat1 = values["heat"]
+
+            speed1 = values["speed"]
+            try:
+                if event == "speed":
+                    speed = float(speed1)
+                    getheat = functions.get_heat1055_4(speed)
+                    values["heat"] = getheat
+                    window["heat"].update(value=values["heat"])
+                elif event == "heat":
+                    heat = float(heat1)
+                    getspeed = functions.get_speed1055_4(heat)
+                    values["speed"] = getspeed
+                    window["speed"].update(value=values["speed"])
+            except ValueError:
+                continue
+
+        elif values["machine"] == "Machine 4" and values["material"] == "1055" and values["tos"] == "Tape":
+
+            heat1 = values["heat"]
+
+            speed1 = values["speed"]
+            try:
+                if event == "speed":
+                    speed = float(speed1)
+                    getheat = functions.get_heat1055t_4(speed)
+                    values["heat"] = getheat
+                    window["heat"].update(value=values["heat"])
+                elif event == "heat":
+                    heat = float(heat1)
+                    getspeed = functions.get_speed1055t_4(heat)
+                    values["speed"] = getspeed
+                    window["speed"].update(value=values["speed"])
+            except ValueError:
+                continue
+
+            # 2051
+        if values["machine"] == "Machine 4" and values["material"] == "2051" and values["tos"] == "Seam":
+
+            heat1 = values["heat"]
+
+            speed1 = values["speed"]
+            try:
+                if event == "speed":
+                    speed = float(speed1)
+                    getheat = functions.get_heat2051_4(speed)
+                    values["heat"] = getheat
+                    window["heat"].update(value=values["heat"])
+                elif event == "heat":
+                    heat = float(heat1)
+                    getspeed = functions.get_speed1055_4(heat)
+                    values["speed"] = getspeed
+                    window["speed"].update(value=values["speed"])
+            except ValueError:
+                continue
+
+        elif values["machine"] == "Machine 4" and values["material"] == "2051" and values["tos"] == "Tape":
+
+            heat1 = values["heat"]
+
+            speed1 = values["speed"]
+            try:
+                if event == "speed":
+                    speed = float(speed1)
+                    getheat = functions.get_heat2051t_4(speed)
+                    values["heat"] = getheat
+                    window["heat"].update(value=values["heat"])
+                elif event == "heat":
+                    heat = float(heat1)
+                    getspeed = functions.get_speed2051t_1(heat)
+                    values["speed"] = getspeed
+                    window["speed"].update(value=values["speed"])
+            except ValueError:
+                continue
+
+            # 4090
+        elif values["machine"] == "Machine 4" and values["material"] == "4090" and values["tos"] == "Seam":
+
+            heat1 = values["heat"]
+
+            speed1 = values["speed"]
+            try:
+                if event == "speed":
+                    speed = float(speed1)
+                    getheat = functions.get_heat4090_4(speed)
+                    values["heat"] = getheat
+                    window["heat"].update(value=values["heat"])
+                elif event == "heat":
+                    heat = float(heat1)
+                    getspeed = functions.get_speed4090_4(heat)
+                    values["speed"] = getspeed
+                    window["speed"].update(value=values["speed"])
+            except ValueError:
+                continue
+
+        elif values["machine"] == "Machine 4" and values["material"] == "4090" and values["tos"] == "Tape":
+
+            heat1 = values["heat"]
+
+            speed1 = values["speed"]
+            try:
+                if event == "speed":
+                    speed = float(speed1)
+                    getheat = functions.get_heat4090t_4(speed)
+                    values["heat"] = getheat
+                    window["heat"].update(value=values["heat"])
+                elif event == "heat":
+                    heat = float(heat1)
+                    getspeed = functions.get_speed4090t_4(heat)
+                    values["speed"] = getspeed
+                    window["speed"].update(value=values["speed"])
+            except ValueError:
+                continue
+
+            # Vinyl
+        elif values["machine"] == "Machine 4" and values["material"] == "vinyl" and values["tos"] == "Seam":
+
+            heat1 = values["heat"]
+
+            speed1 = values["speed"]
+            try:
+                if event == "speed":
+                    speed = float(speed1)
+                    getheat = functions.get_heatvinyl_4(speed)
+                    values["heat"] = getheat
+                    window["heat"].update(value=values["heat"])
+                elif event == "heat":
+                    heat = float(heat1)
+                    getspeed = functions.get_speedvinyl_4(heat)
+                    values["speed"] = getspeed
+                    window["speed"].update(value=values["speed"])
+            except ValueError:
+                continue
+
+        elif values["machine"] == "Machine 4" and values["material"] == "vinyl" and values["tos"] == "Tape":
+
+            heat1 = values["heat"]
+
+            speed1 = values["speed"]
+            try:
+                if event == "speed":
+                    speed = float(speed1)
+                    getheat = functions.get_heatvinylt_4(speed)
+                    values["heat"] = getheat
+                    window["heat"].update(value=values["heat"])
+                elif event == "heat":
+                    heat = float(heat1)
+                    getspeed = functions.get_speedvinylt_4(heat)
+                    values["speed"] = getspeed
+                    window["speed"].update(value=values["speed"])
+
+
+            except ValueError:
+                continue
+            except TypeError:
+                continue
+
+    except TypeError:
+        continue
+
+# show events and there values
 #    print(event)
 #    print(values)
 
 
 window.close()
-
-

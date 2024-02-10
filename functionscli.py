@@ -1,3 +1,5 @@
+import math
+
 def heat():
     heat = float(input("what is the heat? "))
     return heat
